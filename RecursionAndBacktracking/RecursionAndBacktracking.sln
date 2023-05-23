@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindAllPathsInALabyrinth", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "8QueensPuzzle", "8QueensPuzzle\8QueensPuzzle.csproj", "{1B1EB4CC-B3AB-42BF-8D43-4C00255D4A3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecursiveFibonacci", "RecursiveFibonacci\RecursiveFibonacci.csproj", "{7C143AFC-B46C-4293-8A5F-2969E47A1A90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{1B1EB4CC-B3AB-42BF-8D43-4C00255D4A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B1EB4CC-B3AB-42BF-8D43-4C00255D4A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B1EB4CC-B3AB-42BF-8D43-4C00255D4A3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C143AFC-B46C-4293-8A5F-2969E47A1A90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C143AFC-B46C-4293-8A5F-2969E47A1A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C143AFC-B46C-4293-8A5F-2969E47A1A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C143AFC-B46C-4293-8A5F-2969E47A1A90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

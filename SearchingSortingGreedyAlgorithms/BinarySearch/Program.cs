@@ -14,7 +14,7 @@ namespace BinarySearch
 
 			int number = int.Parse(Console.ReadLine());
 
-			Console.WriteLine(BinarySearch(number, numbers););
+			Console.WriteLine(BinarySearch(number, numbers));
 		}
 
 		private static int BinarySearch(int number, int[] numbers)

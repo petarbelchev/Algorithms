@@ -7,6 +7,7 @@ namespace CyclesInAGraph
 	{
 		private static Dictionary<string, List<string>> graph;
 		private static HashSet<string> visited;
+		private static HashSet<string> currentPath;
 
 		static void Main(string[] args)
 		{
@@ -19,6 +20,7 @@ namespace CyclesInAGraph
 		private static bool IsAcyclic()
 		{
 			visited = new HashSet<string>();
+			currentPath = new HashSet<string>();
 
 			foreach (var (vertex, successors) in graph)
 			{
@@ -37,15 +39,19 @@ namespace CyclesInAGraph
 
 		private static void Dfs(string vertex)
 		{
-			if (visited.Contains(vertex))
+			if (currentPath.Contains(vertex))
 				throw new ArgumentException();
 
+			if (visited.Contains(vertex))
+				return;
+
 			visited.Add(vertex);
+			currentPath.Add(vertex);
 
 			foreach (var successor in graph[vertex])
 				Dfs(successor);
 
-			visited.Remove(vertex);
+			currentPath.Remove(vertex);
 		}
 
 		private static Dictionary<string, List<string>> ReadGraph()

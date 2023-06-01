@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DfsTopologicalSorting", "Df
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShortestPath", "ShortestPath\ShortestPath.csproj", "{B291A57C-CF15-490E-B684-EFAF52521D51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistanceBetweenVertices", "DistanceBetweenVertices\DistanceBetweenVertices.csproj", "{4E6F2E5D-A7F9-4820-BF15-D7EDB8108BCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistanceBetweenVertices", "DistanceBetweenVertices\DistanceBetweenVertices.csproj", "{4E6F2E5D-A7F9-4820-BF15-D7EDB8108BCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreasInMatrix", "AreasInMatrix\AreasInMatrix.csproj", "{27CB8404-8DEE-4A93-8AF0-9272FF31A7BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4E6F2E5D-A7F9-4820-BF15-D7EDB8108BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E6F2E5D-A7F9-4820-BF15-D7EDB8108BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E6F2E5D-A7F9-4820-BF15-D7EDB8108BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27CB8404-8DEE-4A93-8AF0-9272FF31A7BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27CB8404-8DEE-4A93-8AF0-9272FF31A7BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27CB8404-8DEE-4A93-8AF0-9272FF31A7BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27CB8404-8DEE-4A93-8AF0-9272FF31A7BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,84 +3,84 @@ using System.Collections.Generic;
 
 namespace WordCruncher
 {
-	internal class Program
-	{
-		private static string finalWord;
-		private static Dictionary<string, int> partsWithCount;
-		private static Dictionary<int, List<string>> partsByIndex;
-		private static LinkedList<string> wordCtor;
+    internal class Program
+    {
+        private static string finalWord;
+        private static Dictionary<string, int> partsWithCount;
+        private static Dictionary<int, List<string>> partsByIndex;
+        private static LinkedList<string> wordCtor;
 
-		static void Main(string[] args)
-		{
-			SetUp();
+        static void Main(string[] args)
+        {
+            SetUp();
 
-			wordCtor = new LinkedList<string>();
+            wordCtor = new LinkedList<string>();
 
-			FindCombinations(0);
-		}
+            FindCombinations(0);
+        }
 
-		private static void SetUp()
-		{
-			string[] parts = Console.ReadLine().Split(", ");
-			finalWord = Console.ReadLine();
+        private static void SetUp()
+        {
+            string[] parts = Console.ReadLine().Split(", ");
+            finalWord = Console.ReadLine();
 
-			partsWithCount = new Dictionary<string, int>();
+            partsWithCount = new Dictionary<string, int>();
 
-			Array.ForEach(parts, part =>
-			{
-				if (!partsWithCount.ContainsKey(part))
-					partsWithCount[part] = 0;
-				
-				partsWithCount[part]++;
-			});
+            Array.ForEach(parts, part =>
+            {
+                if (!partsWithCount.ContainsKey(part))
+                    partsWithCount[part] = 0;
 
-			partsByIndex = new Dictionary<int, List<string>>();
+                partsWithCount[part]++;
+            });
 
-			foreach (var (part, count) in partsWithCount)
-			{
-				int index = finalWord.IndexOf(part);
+            partsByIndex = new Dictionary<int, List<string>>();
 
-				if (index == -1)
-					continue;
+            foreach (var (part, count) in partsWithCount)
+            {
+                int index = finalWord.IndexOf(part);
 
-				while (index != -1)
-				{
-					if (!partsByIndex.ContainsKey(index))
-						partsByIndex[index] = new List<string>();
+                if (index == -1)
+                    continue;
 
-					partsByIndex[index].Add(part);
+                while (index != -1)
+                {
+                    if (!partsByIndex.ContainsKey(index))
+                        partsByIndex[index] = new List<string>();
 
-					index = finalWord.IndexOf(part, index + part.Length);
-				}
-			}
-		}
+                    partsByIndex[index].Add(part);
 
-		private static void FindCombinations(int index)
-		{
-			if (index == finalWord.Length && string.Join(string.Empty, wordCtor) == finalWord)
-			{
-				Console.WriteLine(string.Join(' ', wordCtor));
-				return;
-			}
+                    index = finalWord.IndexOf(part, index + part.Length);
+                }
+            }
+        }
 
-			if (!partsByIndex.ContainsKey(index))
-				return;
+        private static void FindCombinations(int index)
+        {
+            if (index == finalWord.Length && string.Join(string.Empty, wordCtor) == finalWord)
+            {
+                Console.WriteLine(string.Join(' ', wordCtor));
+                return;
+            }
 
-			for (int i = 0; i < partsByIndex[index].Count; i++)
-			{
-				string word = partsByIndex[index][i];
-				
-				if (partsWithCount[word] == 0)
-					continue;
+            if (!partsByIndex.ContainsKey(index))
+                return;
 
-				wordCtor.AddLast(word);
-				partsWithCount[word]--;
+            for (int i = 0; i < partsByIndex[index].Count; i++)
+            {
+                string word = partsByIndex[index][i];
 
-				FindCombinations(index + word.Length);
+                if (partsWithCount[word] == 0)
+                    continue;
 
-				wordCtor.RemoveLast();
-				partsWithCount[word]++;
-			}
-		}
-	}
+                wordCtor.AddLast(word);
+                partsWithCount[word]--;
+
+                FindCombinations(index + word.Length);
+
+                wordCtor.RemoveLast();
+                partsWithCount[word]++;
+            }
+        }
+    }
 }

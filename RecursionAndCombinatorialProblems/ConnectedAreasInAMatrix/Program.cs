@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace ConnectedAreasInAMatrix
 {
-	internal class Program
-	{
-		private class Area
-		{
+    internal class Program
+    {
+        private class Area
+        {
             public int Row { get; set; }
 
             public int Col { get; set; }
@@ -15,85 +15,85 @@ namespace ConnectedAreasInAMatrix
             public int Size { get; set; }
         }
 
-		private static char[,] matrix;
+        private static char[,] matrix;
 
-		static void Main(string[] args)
-		{			
-			DrawMatrix();
+        static void Main(string[] args)
+        {
+            DrawMatrix();
 
-			List<Area> areas = FindAreas();
+            List<Area> areas = FindAreas();
 
-			PrintResult(areas);
-		}
+            PrintResult(areas);
+        }
 
-		private static void DrawMatrix()
-		{
-			int rows = int.Parse(Console.ReadLine());
-			int cols = int.Parse(Console.ReadLine());
+        private static void DrawMatrix()
+        {
+            int rows = int.Parse(Console.ReadLine());
+            int cols = int.Parse(Console.ReadLine());
 
-			matrix = new char[rows, cols];
+            matrix = new char[rows, cols];
 
-			for (int row = 0; row < matrix.GetLength(0); row++)
-			{
-				string rowData = Console.ReadLine();
-			
-				for (int col = 0; col < matrix.GetLength(1); col++)
-					matrix[row, col] = rowData[col];
-			}
-		}
+            for (int row = 0; row < matrix.GetLength(0); row++)
+            {
+                string rowData = Console.ReadLine();
 
-		private static List<Area> FindAreas()
-		{
-			var areas = new List<Area>();
-			
-			for (int row = 0; row < matrix.GetLength(0); row++)
-			{
-				for (int col = 0; col < matrix.GetLength(1); col++)
-				{
-					var area = new Area() { Row = row, Col = col };
-					ExploreMatrix(row, col, area);
+                for (int col = 0; col < matrix.GetLength(1); col++)
+                    matrix[row, col] = rowData[col];
+            }
+        }
 
-					if (area.Size > 0)
-						areas.Add(area);
-				}
-			}
+        private static List<Area> FindAreas()
+        {
+            var areas = new List<Area>();
 
-			return areas
-				.OrderByDescending(a => a.Size)
-				.ThenBy(a => a.Row)
-				.ThenBy(a => a.Col)
-				.ToList();
-		}
+            for (int row = 0; row < matrix.GetLength(0); row++)
+            {
+                for (int col = 0; col < matrix.GetLength(1); col++)
+                {
+                    var area = new Area() { Row = row, Col = col };
+                    ExploreMatrix(row, col, area);
 
-		private static void ExploreMatrix(int row, int col, Area area)
-		{
-			if (IsOutside(row, col) || IsWall(row, col) || IsVisited(row, col))
-				return;
+                    if (area.Size > 0)
+                        areas.Add(area);
+                }
+            }
 
-			matrix[row, col] = 'V';
-			area.Size++;
+            return areas
+                .OrderByDescending(a => a.Size)
+                .ThenBy(a => a.Row)
+                .ThenBy(a => a.Col)
+                .ToList();
+        }
 
-			ExploreMatrix(row - 1, col, area); // UP
-			ExploreMatrix(row + 1, col, area); // DOWN
-			ExploreMatrix(row, col - 1, area); // LEFT
-			ExploreMatrix(row, col + 1, area); // RIGHT
-		}
-		
-		private static bool IsOutside(int row, int col)
-			=> row < 0 || col < 0 || row >= matrix.GetLength(0) || col >= matrix.GetLength(1);
-		
-		private static bool IsWall(int row, int col)
-			=> matrix[row, col] == '*';
+        private static void ExploreMatrix(int row, int col, Area area)
+        {
+            if (IsOutside(row, col) || IsWall(row, col) || IsVisited(row, col))
+                return;
 
-		private static bool IsVisited(int row, int col)
-			=> matrix[row, col] == 'V';
+            matrix[row, col] = 'V';
+            area.Size++;
 
-		private static void PrintResult(List<Area> areas)
-		{
+            ExploreMatrix(row - 1, col, area); // UP
+            ExploreMatrix(row + 1, col, area); // DOWN
+            ExploreMatrix(row, col - 1, area); // LEFT
+            ExploreMatrix(row, col + 1, area); // RIGHT
+        }
+
+        private static bool IsOutside(int row, int col)
+            => row < 0 || col < 0 || row >= matrix.GetLength(0) || col >= matrix.GetLength(1);
+
+        private static bool IsWall(int row, int col)
+            => matrix[row, col] == '*';
+
+        private static bool IsVisited(int row, int col)
+            => matrix[row, col] == 'V';
+
+        private static void PrintResult(List<Area> areas)
+        {
             Console.WriteLine($"Total areas found: {areas.Count()}");
 
             for (int i = 0; i < areas.Count(); i++)
                 Console.WriteLine($"Area #{i + 1} at ({areas[i].Row}, {areas[i].Col}), size: {areas[i].Size}");
-		}
-	}
+        }
+    }
 }

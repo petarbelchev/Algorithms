@@ -2,31 +2,31 @@
 
 namespace NestedLoopsToRecursion
 {
-	internal class Program
-	{
-		private static int[] elements;
+    internal class Program
+    {
+        private static int[] elements;
 
-		static void Main(string[] args)
-		{
-			int n = int.Parse(Console.ReadLine());
-			elements = new int[n];
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            elements = new int[n];
 
-			Generate(0);
-		}
+            Generate(0);
+        }
 
-		private static void Generate(int idx)
-		{
-			if (idx >= elements.Length)
-			{
+        private static void Generate(int idx)
+        {
+            if (idx >= elements.Length)
+            {
                 Console.WriteLine(string.Join(' ', elements));
-				return;
+                return;
             }
 
-			for (int i = 1; i <= elements.Length; i++)
-			{
-				elements[idx] = i;
-				Generate(idx + 1);
-			}
-		}
-	}
+            for (int i = 1; i <= elements.Length; i++)
+            {
+                elements[idx] = i;
+                Generate(idx + 1);
+            }
+        }
+    }
 }

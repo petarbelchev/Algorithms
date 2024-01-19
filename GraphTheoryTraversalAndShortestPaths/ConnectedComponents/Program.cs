@@ -4,61 +4,61 @@ using System.Linq;
 
 namespace ConnectedComponents
 {
-	internal class Program
-	{
-		private static List<int>[] graph;
-		private static bool[] visited;
+    internal class Program
+    {
+        private static List<int>[] graph;
+        private static bool[] visited;
 
-		static void Main(string[] args)
-		{
-			DrawGraph();
+        static void Main(string[] args)
+        {
+            DrawGraph();
 
-			visited = new bool[graph.Length];
+            visited = new bool[graph.Length];
 
-			for (int node = 0; node < graph.Length; node++)
-			{
-				if (visited[node])
-					continue;
+            for (int node = 0; node < graph.Length; node++)
+            {
+                if (visited[node])
+                    continue;
 
-				var component = new List<int>();
-				DFS(node, component);
-				Console.WriteLine($"Connected component: {string.Join(' ', component)}");
-			}
-		}
+                var component = new List<int>();
+                DFS(node, component);
+                Console.WriteLine($"Connected component: {string.Join(' ', component)}");
+            }
+        }
 
-		private static void DFS(int node, List<int> component)
-		{
-			if (visited[node])
-				return;
+        private static void DFS(int node, List<int> component)
+        {
+            if (visited[node])
+                return;
 
-			visited[node] = true;
+            visited[node] = true;
 
-			foreach (var child in graph[node])
-				DFS(child, component);
+            foreach (var child in graph[node])
+                DFS(child, component);
 
-			component.Add(node);
-		}
+            component.Add(node);
+        }
 
-		private static void DrawGraph()
-		{
-			int n = int.Parse(Console.ReadLine());
-			graph = new List<int>[n];
+        private static void DrawGraph()
+        {
+            int n = int.Parse(Console.ReadLine());
+            graph = new List<int>[n];
 
-			for (int i = 0; i < n; i++)
-			{
-				string input = Console.ReadLine();
-				graph[i] = new List<int>();
+            for (int i = 0; i < n; i++)
+            {
+                string input = Console.ReadLine();
+                graph[i] = new List<int>();
 
-				if (!string.IsNullOrWhiteSpace(input))
-				{
-					int[] nodeChilds = input
-						.Split()
-						.Select(int.Parse)
-						.ToArray();
+                if (!string.IsNullOrWhiteSpace(input))
+                {
+                    int[] nodeChilds = input
+                        .Split()
+                        .Select(int.Parse)
+                        .ToArray();
 
-					graph[i].AddRange(nodeChilds);
-				}
-			}
-		}
-	}
+                    graph[i].AddRange(nodeChilds);
+                }
+            }
+        }
+    }
 }
